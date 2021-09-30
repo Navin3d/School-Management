@@ -1,7 +1,6 @@
 package gmc.project.schoolmanagement.user.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import gmc.project.schoolmanagement.user.data.UserEntity;
 import gmc.project.schoolmanagement.user.data.UserRepository;
-import gmc.project.schoolmanagement.user.model.Roles;
 import gmc.project.schoolmanagement.user.model.SignUpRequestModel;
 import gmc.project.schoolmanagement.user.model.SignUpResponseModel;
 import gmc.project.schoolmanagement.user.shared.UserDto;
@@ -47,15 +45,7 @@ public class UserServiceImpl implements UserService {
 		UserDto mappedUser = modelMapper.map(signUpRequestModel, UserDto.class);
 		mappedUser.setUserId(UUID.randomUUID().toString());
 		mappedUser.setEncryptedPassword(bCryptPasswordEncoder.encode(signUpRequestModel.getPassword()));
-		
-		Date currentDate = new Date();
-		String dob = mappedUser.getDob();
-		
-		if(Long.valueOf(dob) > currentDate.getYear()-20)
-			mappedUser.setRole(Roles.STUDENT);
-		else
-			mappedUser.setRole(Roles.TEACHER);
-		
+				
 		UserEntity detachedUser = modelMapper.map(mappedUser, UserEntity.class);
 		UserEntity savedUser = userRepository.save(detachedUser);
 		

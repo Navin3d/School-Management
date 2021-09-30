@@ -1,2 +1,2 @@
-# Cloud_Sample_Configuration
-This is an Cloud vault for Cloud sample configuration.
+# School-Management-Cloud-Vault
+School Management Cloud Vault for Users Microservices.

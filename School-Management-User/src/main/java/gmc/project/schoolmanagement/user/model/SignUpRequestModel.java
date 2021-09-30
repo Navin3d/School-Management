@@ -12,5 +12,6 @@ public class SignUpRequestModel {
 	private String confirmPassword;
 	private Gender gender;
 	private String dob;
+	private Roles role;
 	
 }
