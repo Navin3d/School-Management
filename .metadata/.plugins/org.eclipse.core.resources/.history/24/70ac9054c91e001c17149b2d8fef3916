@@ -1,0 +1,5 @@
+spring.application.name = SchoolManagement
+server.port = 8010
+
+eureka.client.register-with-eureka = false
+eureka.client.serviceUrl.defaultZone = http://localhost:8010/eureka

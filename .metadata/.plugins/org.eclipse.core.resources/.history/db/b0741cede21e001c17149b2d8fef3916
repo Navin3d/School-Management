@@ -1,0 +1,6 @@
+package gmc.project.schoolmanagement.user.model;
+
+@Data
+public class SignUpRequestModel {
+
+}

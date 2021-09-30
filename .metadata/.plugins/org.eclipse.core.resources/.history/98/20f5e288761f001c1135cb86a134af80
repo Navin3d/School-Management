@@ -1,0 +1,78 @@
+package gmc.project.schoolmanagement.user.security;
+
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Date;
+
+import javax.servlet.FilterChain;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.core.env.Environment;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import gmc.project.schoolmanagement.user.model.LoginRequestModel;
+import gmc.project.schoolmanagement.user.service.UserService;
+import gmc.project.schoolmanagement.user.shared.UserDto;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+		
+	private final UserService userService;
+	private final Environment environment;
+	
+	public AuthenticationFilter(UserService userService, Environment environment) {
+		super();
+		this.userService = userService;
+		this.environment = environment;
+	}
+	
+	private String secretKey = Base64.getEncoder().encodeToString(environment.getProperty("token.secret").getBytes(StandardCharsets.UTF_8));
+
+	@Override
+	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
+			throws AuthenticationException {
+		
+		try {
+			LoginRequestModel creds = new ObjectMapper()
+					.readValue(request.getInputStream(), LoginRequestModel.class);
+			
+			return getAuthenticationManger().authenticate(
+						new UsernamePasswordAuthenticationToken(
+								creds.getEmail(),
+								creds.getPassword(),
+								new ArrayList<>()
+							)
+					);
+
+		} catch(Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Override
+	protected void successfulAuthentication(HttpServletRequest req,
+											HttpServletResponse res,
+											FilterChain chain,
+											Authentication auth) {
+		
+		String userName = ((User) auth.getPrincipal()).getUsername();
+		
+		UserDto user = userService.getUserByEmail(userName);
+		
+		String token = Jwts.builder()
+				.setSubject(user.getUserId())
+				.setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(environment.getProperty("token.expiration.time"))))
+				.signWith(SignatureAlgorithm.ES512, secretKey)
+	}
+	
+}

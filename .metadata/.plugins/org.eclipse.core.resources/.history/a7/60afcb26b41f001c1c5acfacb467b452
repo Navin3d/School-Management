@@ -1,0 +1,43 @@
+package gmc.project.schoolmanagement.apigateway.security;
+
+import org.springframework.cloud.gateway.filter.GatewayFilter;
+import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
+
+@Component
+public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationHeaderFilter> {
+
+	private final Environment environment;
+	
+	public AuthorizationHeaderFilter(Environment environment) {
+		super();
+		this.environment = environment;
+	}
+
+	public static class config {}
+	
+	@Override
+	public GatewayFilter apply(AuthorizationHeaderFilter config) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	private boolean isJwtValid(String token) {
+		
+		boolean returnValue = true;
+		
+		String subject = null;
+		
+		try {
+			
+		}
+		
+		if(subject.isEmpty() || subject == null)
+			returnValue = false;
+		
+		
+		return returnValue;
+	}
+
+}

@@ -1,0 +1,5 @@
+package gmc.project.schoolmanagement.user.data;
+
+public interface UserRepository {
+
+}

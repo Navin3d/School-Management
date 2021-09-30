@@ -1,0 +1,28 @@
+spring.application.name = School-Management-Api-Gateway
+server.port = 8082
+eureka.client.serviceUrl.defaultZone = http://localhost:8010/eureka
+
+spring.cloud.gateway.routes[0].id = user-signup
+spring.cloud.gateway.routes[0].uri = lb://School-Management-User-Ws
+spring.cloud.gateway.routes[0].predicates[0] = Path=/user/signup
+spring.cloud.gateway.routes[0].predicates[1] = Method=POST
+spring.cloud.gateway.routes[0].filters[0] = RemoveRequestHeader=Cookie
+spring.cloud.gateway.routes[0].filters[1] = RewritePath=/School-Management-User-Ws/(?<segment>.*), /$\{segment}
+
+spring.cloud.gateway.routes[1].id = user-login
+spring.cloud.gateway.routes[1].uri = lb://School-Management-User-Ws
+spring.cloud.gateway.routes[1].predicates[0] = Path=/login
+spring.cloud.gateway.routes[1].predicates[1] = Method=POST
+spring.cloud.gateway.routes[1].filters[0] = RemoveRequestHeader=Cookie
+spring.cloud.gateway.routes[1].filters[1] = RewritePath=/School-Management-User-Ws/(?<segment>.*), /$\{segment}
+
+spring.cloud.gateway.routes[2].id = user-status
+spring.cloud.gateway.routes[2].uri = lb://School-Management-User-Ws
+spring.cloud.gateway.routes[2].predicates[0] = Path=/user/status/check
+spring.cloud.gateway.routes[2].predicates[1] = Method=GET
+spring.cloud.gateway.routes[2].predicates[2] = Authorization, Bearer(.*)
+spring.cloud.gateway.routes[2].filters[0] = RemoveRequestHeader=Cookie
+spring.cloud.gateway.routes[2].filters[1] = RewritePath=/School-Management-User-Ws/(?<segment>.*), /$\{segment}
+
+token.secret = oop-group-project-krishna-kaushik-kishore-loga-navin
+

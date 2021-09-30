@@ -1,0 +1,23 @@
+package gmc.project.schoolmanagement.user.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import gmc.project.schoolmanagement.user.service.UserService;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+	
+	private final Environment environment;
+	private final UserService userService;
+
+	public UserController(UserService userService, Environment environment) {
+		super();
+		this.environment = environment;
+		this.userService = userService;
+	}
+	
+	
+
+}

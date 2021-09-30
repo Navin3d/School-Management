@@ -1,0 +1,9 @@
+package gmc.project.schoolmanagement.user.service;
+
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+import gmc.project.schoolmanagement.user.model.CreateUserRequestModel;
+
+public interface UserService extends UserDetailsService {
+	UserDto createUser(SignUpRequestModel createUserRequestModel);
+}

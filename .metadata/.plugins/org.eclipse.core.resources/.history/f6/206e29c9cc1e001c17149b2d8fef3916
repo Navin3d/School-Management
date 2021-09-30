@@ -1,0 +1,6 @@
+package gmc.project.schoolmanagement.user.security;
+
+@Configuration
+public class WebSecurity {
+
+}

@@ -1,0 +1,20 @@
+package gmc.project.schoolmanagement.user.shared;
+
+import java.io.Serializable;
+
+import gmc.project.schoolmanagement.user.model.Gender;
+import lombok.Data;
+
+@Data
+public class UserDto implements Serializable {
+	
+	private String userId;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String password;
+	private String encyptedPassword;
+	private String phoneNumber;
+	private Gender gender;
+
+}

@@ -1,0 +1,24 @@
+package gmc.project.schoolmanagement.user.data;
+
+import java.util.Date;
+
+import gmc.project.schoolmanagement.user.model.Gender;
+import gmc.project.schoolmanagement.user.model.Roles;
+import lombok.Data;
+
+@Data
+public class UserEntity {
+	
+	private Long id;
+	
+	private String userId;
+	
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String encryptedPassword;
+	private Date dob;
+	private Gender gender;
+	private Roles role;
+
+}

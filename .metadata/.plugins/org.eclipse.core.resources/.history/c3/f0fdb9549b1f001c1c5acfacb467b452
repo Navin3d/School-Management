@@ -1,0 +1,9 @@
+spring.application.name = School-Management-Api-Gateway
+server.port = 8082
+eureka.client.serviceUrl.defaultZone = http://localhost:8010/eureka
+
+spring.cloud.gateway.routes[0].id = user-signup
+spring.cloud.gateway.routes[0].uri = lb://School-Management-User-Ws
+spring.cloud.gateway.routes[0].predicates[0] = Path=/user/signup
+spring.cloud.gateway.routes[0].predicates[1] = Method=POST
+spring.cloud.gateway.routes[0].filters[0] = RemoveRequestHeader=Cookie

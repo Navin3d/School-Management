@@ -1,0 +1,36 @@
+package gmc.project.schoolmanagement.user.data;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import gmc.project.schoolmanagement.user.model.Gender;
+import gmc.project.schoolmanagement.user.model.Roles;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "User-Entity")
+public class UserEntity {
+	
+	@Id
+	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	private String userId;
+	
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String encryptedPassword;
+	private Date dob;
+	private Gender gender;
+	private Roles role;
+
+}

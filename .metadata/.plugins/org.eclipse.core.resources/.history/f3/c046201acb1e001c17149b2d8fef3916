@@ -1,0 +1,3 @@
+spring.application.name = SchoolManagementUserWs
+server.port = ${PORT:0}
+

@@ -1,0 +1,9 @@
+package gmc.project.schoolmanagement.user.shared;
+
+public class UserDto {
+	
+	private String userId;
+	private String firstName;
+	private STring lastName;
+
+}

@@ -1,0 +1,5 @@
+package gmc.project.schoolmanagement.user.controller;
+
+public class UserController {
+
+}

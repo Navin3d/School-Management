@@ -1,0 +1,13 @@
+package gmc.project.schoolmanagement.apigateway;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SchoolManagementApiGatewayApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SchoolManagementApiGatewayApplication.class, args);
+	}
+
+}

@@ -1,0 +1,5 @@
+spring.application.name = School-Management-User-Ws
+spring.devtools.restart.enabled = true
+server.port = ${PORT:0}
+
+eureka.client.serviceUrl.defaultZone = http://localhost:8010/eureka
