@@ -1,2 +1,5 @@
 # Cloud-Vault-for-School-Management
-Cloud Vault for School Management Mini Project.
+
+School Management Mini Project.
+
+Not currrently functional working on it.
